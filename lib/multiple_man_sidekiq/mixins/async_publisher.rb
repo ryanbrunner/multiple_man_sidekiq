@@ -4,7 +4,7 @@ module MultipleMan
   module AsyncPublisher
     
     def AsyncPublisher.included(base)
-      base.include(MultipleMan::Publisher)
+      base.send(:include, MultipleMan::Publisher)
       base.extend(ClassMethods)
     end
 
