@@ -2,15 +2,16 @@ require 'active_support/core_ext'
 
 module MultipleMan
   module AsyncPublisher
-    include MultipleMan::Publisher
-    def ASyncPublisher.included(base)
+    
+    def AsyncPublisher.included(base)
+      base.include(MultipleMan::Publisher)
       base.extend(ClassMethods)
     end
 
     module ClassMethods
       
       def publish(options = {})
-        self.multiple_man_publisher = AsyncModelPublisher.build(options)
+        self.multiple_man_publisher = AsyncModelPublisher.new(options)
       end
     end
   end
