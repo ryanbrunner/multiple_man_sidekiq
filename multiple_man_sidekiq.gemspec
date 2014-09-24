@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = MultipleManSidekiq::VERSION
   spec.authors       = ["Ryan Brunner"]
   spec.email         = ["ryan@influitive.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Sidekiq support for Multiple Man}
+  spec.description   = %q{This gem adds support for publishing Multiple Man models asynchronously using Sidekiq}
   spec.homepage      = ""
   spec.license       = "MIT"
 
