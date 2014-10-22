@@ -14,7 +14,10 @@ module MultipleMan
         klass = records.class.name
       end
 
-      ModelPublisherJob.perform_async(klass, ids, options, operation)
+      # Split jobs into parts so sidekiq doesn't need to deal with enormous seed jobs.
+      ids.each_slice(1000) do |ids|
+        ModelPublisherJob.perform_async(klass, ids, options, operation)
+      end
     end
 
   end
