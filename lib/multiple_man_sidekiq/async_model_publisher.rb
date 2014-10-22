@@ -16,7 +16,7 @@ module MultipleMan
 
       # Split jobs into parts so sidekiq doesn't need to deal with enormous seed jobs.
       ids.each_slice(1000) do |ids|
-        queue = MultipleMan.configuration.sidekiq_queue[operation.to_sym] || 'default'
+        queue = MultipleManSidekiq.configuration.sidekiq_queue[operation.to_sym] || 'default'
 
         Sidekiq::Client.push({
           'class' => ModelPublisherJob,
