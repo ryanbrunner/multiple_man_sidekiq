@@ -1,4 +1,4 @@
-module MultipleMan
+module MultipleManSidekiq
   class Configuration
 
     def initialize
