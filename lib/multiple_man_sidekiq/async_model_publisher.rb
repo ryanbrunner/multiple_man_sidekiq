@@ -40,7 +40,7 @@ module MultipleMan
 
     def clean_options(options)
       cleaned = options.dup
-      cleaned[:with] = Kernel.const_get(cleaned[:with]) if cleaned[:with].present?
+      cleaned['with'] = Kernel.const_get(cleaned['with']) if cleaned['with'].present?
       cleaned
     end
 
