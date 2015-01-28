@@ -18,13 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-MultipleManSidekiq adds a new option to the `publish` call provided by MultipleMan. To set any publish to asynchronous, just add `async: true` to the options when setting up publishing. 
+MultipleManSidekiq adds a new option to the `publish` call provided by MultipleMan. To set any publish to asynchronous,
+include `MultipleMan::AsyncPublisher` (rather than the normal publisher) and add `async: true` to the options when setting up publishing. 
 
 ### Example
 
 ```
 class Widget
-  include MultipleMan::Publisher
+  include MultipleMan::AsyncPublisher
   publish fields: [:foo, :bar],
           async: true
 end
@@ -32,6 +33,11 @@ end
 
 MultipleMan::Sidekiq will create a new job in your default Sidekiq queue (`ASyncModelPublisher`) that will push your 
 messages to RabbitMQ.
+
+## Gotchas
+
+MultipleManSidekiq **does not** work with the deprecated `identifier` option of MultipleMan. Switch to using `identify_by`
+if you're currently using `identifier` before using MultipleManSidekiq.
 
 ## Options
 

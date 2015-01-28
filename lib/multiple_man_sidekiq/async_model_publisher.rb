@@ -33,7 +33,16 @@ module MultipleMan
 
     def perform(record_type, ids, options, operation)
       records = Kernel.const_get(record_type).where(id: ids)
-      ModelPublisher.new(options).publish(records, operation)
+      options = clean_options(options)
+
+      ModelPublisher.new(cleaned_options).publish(records, operation)
     end
+
+    def clean_options(options)
+      cleaned = options.dup
+      cleaned[:with] = Kernel.const_get(cleaned[:with]) if cleaned[:with].present?
+      cleaned
+    end
+
   end
 end
