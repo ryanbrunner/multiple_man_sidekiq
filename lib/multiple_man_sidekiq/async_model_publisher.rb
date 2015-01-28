@@ -35,7 +35,7 @@ module MultipleMan
       records = Kernel.const_get(record_type).where(id: ids)
       options = clean_options(options)
 
-      ModelPublisher.new(cleaned_options).publish(records, operation)
+      ModelPublisher.new(options).publish(records, operation)
     end
 
     def clean_options(options)
